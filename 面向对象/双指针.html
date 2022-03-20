@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 输出："We%20are%20happy."
+        const s = "We are happy."
+        var replaceSpace = function (s) {
+            s = s.split('')
+            let oldLen = s.length
+            let spaceCount = 0
+            for (let i = 0; i < oldLen; i++) {
+                // console.log(s[i]);
+                if (s[i] === ' ') { spaceCount++; }
+            }
+            s.length += spaceCount * 2
+            for (let i = oldLen - 1, j = s.length - 1; i >= 0; i--, j--) {
+                if (s[i] !== ' ') s[j] = s[i];
+                else {
+                    s[j - 2] = '%';
+                    s[j - 1] = '2';
+                    s[j] = '0';
+                    j -= 2;
+                }
+            }
+            return s.join('')
+        };
+
+        console.log(replaceSpace(s));
+    </script>
+</body>
+
+</html>

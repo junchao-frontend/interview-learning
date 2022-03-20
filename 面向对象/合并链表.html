@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="./List.js"></script>
+    <script>
+        var Arr = [1, 2, 4]
+        var Arr2 = [1, 3, 4]
+        var l1 = new LinkList(Arr).head
+        var l2 = new LinkList(Arr2).head
+        /**
+         * @param {ListNode} l1
+         * @param {ListNode} l2
+         * @return {ListNode}
+         */
+        var mergeTwoLists = function (l1, l2) {
+            const dummy = new ListNode(-1)
+            let dummyHelper = dummy
+            while (l1 && l2) {
+                if (l1.val <= l2.val) {
+                    dummyHelper.next = l1
+                    l1 = l1.next
+                    dummyHelper = dummyHelper.next
+                } else {
+                    dummyHelper.next = l2
+                    l2 = l2.next
+                    dummyHelper = dummyHelper.next
+                }
+            }
+            if (!l1) dummyHelper.next = l2;
+            if (!l2) dummyHelper.next = l1;
+            return dummy.next;
+        };
+        const result = mergeTwoLists(l1,l2)
+        console.log(result);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+  <title></title>
+  <!-- <script src="https://cdn.bootcdn.net/ajax/libs/vConsole/3.9.0/vconsole.min.js"></script> -->
+</head>
+
+<body>
+  <script>
+    let s = 'abc'
+    function foo(s) {
+      s = s.split('').sort((a, b) => {
+        return a > b ? 1 : -1
+      }).join('')
+      // console.log(s);
+      let ans = []
+      const dfs = (curr, store) => {
+        // 1.是否满足条件，记录结果
+        // 2. 判断终止条件
+        if (!store.length) {
+          // console.log(curr);
+          return ans.push(curr)
+        }
+        // 3. 继续搜索
+        for (let i = 0; i < store.length; i++) {
+          if( i>0 && store[i] === store[i-1]) continue
+          dfs(curr + store[i], store.slice(0, i) + store.slice(i + 1))
+        }
+      }
+      dfs('', s)
+      return ans;
+    }
+    let res = foo(s)
+    console.log(res);
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var SingleItem = (function(){
+            let instance
+            // getObject 函数是构造函数
+            let getObject = function(Name,age){
+                this.name = Name
+                this.age = age 
+            }
+            // 返回一个创建单例的函数
+            return function(Name,age){
+                return instance || (instance = new getObject(Name,age))
+            }
+        })()
+        let obj1 = SingleItem("mx",19),
+            obj2 = SingleItem("wj",22)
+        console.log(obj1);
+        console.log(obj2);
+        console.log(obj1 === obj2)
+    </script>
+</body>
+</html>

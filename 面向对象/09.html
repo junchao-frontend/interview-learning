@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var CQueue = function () {
+            this.queueA = []
+            this.queueB = []
+        };
+
+        /** 
+         * @param {number} value
+         * @return {void}
+         */
+        CQueue.prototype.appendTail = function (value) {
+            this.queueA.push(value)
+        };
+
+        /**
+         * @return {number}
+         */
+        CQueue.prototype.deleteHead = function () {
+            if(this.queueB.length) {
+                return this,queueB.pop()
+            }else {
+                while(this.queueA.length){
+                    this.queueB.push(this.queueA.pop())
+                }
+                if(this.queueB.length) {
+                    return this.stackB.pop()
+                }else{
+                    return -1;
+                }
+            }
+        };
+    </script>
+</body>
+
+</html>

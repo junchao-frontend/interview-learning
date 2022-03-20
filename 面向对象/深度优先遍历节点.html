@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root">
+        <ul>
+            <li>
+                <div>
+                    <p>
+                        <span>1</span>
+                    </p>
+                </div>
+            </li>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+        <p>asdsad</p>
+        <div>
+            <a href="">
+                <img src="" alt="">
+            </a>
+        </div>
+    </div>
+    <script>
+        let root = document.getElementById('root')
+        // console.log(root);
+        function dfs(node,nodeList) {
+            if(node) {
+                nodeList.push(node)
+                let children = node.children
+                for(let i = 0; i < children.length; i++) {
+                    dfs(children[i],nodeList)
+                }
+            }
+            return nodeList
+        }
+        let res = dfs(root,[])
+        console.log(res);
+
+    </script>
+</body>
+
+</html>

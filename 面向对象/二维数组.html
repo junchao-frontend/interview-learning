@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // let matrix = [
+        //     [1, 4, 7, 11, 15],
+        //     [2, 5, 8, 12, 19],
+        //     [3, 6, 9, 16, 22],
+        //     [10, 13, 14, 17, 24],
+        //     [18, 21, 23, 26, 30]
+        // ]
+        // var findNumberIn2DArray = function (matrix, target) {
+        //     let ans = false
+        //     for (let i = 0; i < matrix.length; i++) {
+        //         matrix[i].forEach(item => {
+        //             if(item === target){
+        //                 ans = true
+        //             }
+        //         })
+        //     }
+        //     return ans
+        // };
+        // let res = findNumberIn2DArray(matrix,5)
+        // console.log(res);
+        // var test = function() {
+        // for (let i = 0; i < 5; i++) {
+        //     if(i ==2) return false
+        // }
+        //}
+        // function TreeNode(val) {
+        //     this.val = val;
+        //     this.left = this.right = null;
+        // }
+        // let root = new TreeNode(4)
+        // let queen = [root,0]
+        // console.log(queen);
+        function test(item) {
+            if(typeof item === 'number') {
+                return {
+                    value: item
+                }
+            } else if(Array.isArray(item)) {
+                return {
+                    children: item.map((i) => {
+                        return test(i)
+                    })
+                }
+            }
+        }
+        let arr = [1,2,[3,4]]
+        let res = test(arr)
+        console.log(res);
+    </script>
+</body>
+
+</html>
+<!-- var levelOrder = function(root) {
+    if(!root) return []
+    let ans = []
+    let queen = [root]
+    while(queen.length) {
+        let size = queen.length
+            let res = []
+        while(size > 0) {
+            let top = queen.shift()
+            if(top) {
+                res.push(top.val)
+            }
+            if(top && top.left) {
+                queen.push(top.left)
+            }if(top && top.right) {
+                queen.push(top.right)
+            }
+            size--
+        }
+            ans.push(res)
+    }
+
+
+
+    return ans
+}; -->

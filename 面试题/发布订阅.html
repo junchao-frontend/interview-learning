@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <button id="testButton">++</button>
+    </div>
+    <script>
+        // let buttonNew = document.getElementById("testButton")
+        // let fn1 = () => {
+        //     console.log("This is console log 1!")
+        // }
+        // let fn2 = () => {
+        //     console.log("This is console log 2!")
+        // }
+        // let fn3 = () => {
+        //     console.log("This is console log 3!")
+        // }
+        // buttonNew.addEventListener("click", fn1)
+        // buttonNew.addEventListener("click", fn2)
+        // buttonNew.addEventListener("click", fn3)
+        class PublishSubscribe {
+            subscribes = {}
+            on(subscribe,callback) {
+                const subscribeCallbacks = this.subscribes[subscribe] || [];
+                console.log(...subscribeCallbacks);
+                this.subscribes[subscribe] = [...subscribeCallbacks,callback];
+            }
+            emit(subscribe,...args) {
+                const subscribeCallbacks = this.subscribes[subscribe] || []
+                console.log(subscribeCallbacks);
+                subscribeCallbacks.forEach(callback => callback.call(this,...args));
+            }
+        }
+
+        const pubsub = new PublishSubscribe()
+        pubsub.on('A',(a,b) => {console.log('订阅消息', a,b);})
+
+        setTimeout(()=> {
+            pubsub.emit('A','2000','500')
+        },2000)
+    </script>
+</body>
+
+</html>

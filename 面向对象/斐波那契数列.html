@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // var fib = function (n) {
+        //     if (n == 0) return 0;
+        //     if (n == 1) return 1;
+        //     return fib(n - 1) + fib(n - 2)
+        // };
+        // let res = fib(5)
+        // console.log(res);
+        // console.log(5% 1000000007);
+        var fib = function (n) {
+            let n1 = 0, n2 = 1, sum;
+            for (let i = 0; i < n; i++) {
+                sum = (n1 + n2) % 1000000007;
+                n1 = n2;
+                n2 = sum;
+            }
+            return n1;
+        };
+    </script>
+</body>
+
+</html>

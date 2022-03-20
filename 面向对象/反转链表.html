@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="./List.js"></script>
+    <script>
+        var Arr = [1, 2, 3, 4,5]
+        var head = new LinkList(Arr).head
+        /**
+         * @param {ListNode} head
+         * @return {ListNode}
+         */
+        // 输入: 1->2->3->4->5->NULL
+        // 输出: 5->4->3->2->1->NULL
+        var reverseList = function (head) {
+            let prev = null
+            let curr = head
+            while(head) {
+                const nex = head.next // 
+                head.next = prev // 
+                prev = nex // 
+                head = head.next // 
+            }
+            return head
+        };
+        const result = reverseList(head)
+        console.log(result); // 
+    </script>
+</body>
+
+</html>

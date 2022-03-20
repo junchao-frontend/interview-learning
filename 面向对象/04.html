@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function test () {
+            this.a = false
+            // console.log(1);
+        }
+        test.prototype.print = function(){
+            console.log(this.a);
+        }
+        function test2 () {
+            this.b = true
+            // console.log(1);
+        }
+        test2.prototype = new test()
+        test2.prototype.print2 = function () {
+            console.log(this.b);
+        }
+        test2.prototype.print = function () {
+            console.log(1);
+        }
+        let f1 = new test2()
+        let f2 = new test()
+        console.log(f1);
+        // console.log(f1.b);
+        f1.print()
+        f2.print()
+    </script>
+</body>
+</html>

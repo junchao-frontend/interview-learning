@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div draggable="true">11111</div>
+    <script>
+        // 预编译过程
+        // 1 创建了ao对象 供js引擎自己去访问
+        // 2 找形参和变量的声明, 作为ao对象的属性名 值是undefined
+        // 3 实参和形参相统一
+        // 4 找函数声明 会覆盖变量的声明
+
+        // 第二部进行 js的解释执行  逐行
+
+        function fn(a,c) {
+            console.log(a);
+            var a = 123;
+            console.log(a);
+            console.log(c);
+            function a() {};
+            if(false) {
+                var d = 678
+            }
+            console.log(d);
+            console.log(b);
+            var b = function(){};
+            console.log(b);
+            function c(){};
+            console.log(c);
+        }
+        fn(1,2)
+
+
+        // ao: {
+        //     a: undefined 1 function()
+        //     c: undefined 2 function()
+        //     d: undefined
+        //     b: undefined
+        // }
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .test {
+            border: 1px solid red;
+            height: 150vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="test"></div>
+    <script>
+        function showTop() {
+            var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+            console.log('滚动条位置：' + scrollTop);
+        }
+        // 防抖 如果短时间内大量触发同一事件，只会执行一次函数
+        function debounce(fn, delay) {
+            let timer = null //借助闭包
+            return function () {
+                if (timer) {
+                    clearTimeout(timer)
+                }
+                timer = setTimeout(fn, delay) // 简化写法
+            }
+        }
+        function throttle(fn, delay) {
+            let valid = true
+            return function () {
+                if (!valid) {
+                    //休息时间 暂不接客
+                    return false
+                }
+                // 工作时间，执行函数并且在间隔期内把状态位设为无效
+                valid = false
+                setTimeout(() => {
+                    fn()
+                    valid = true;
+                }, delay)
+            }
+        }
+        window.onscroll = throttle(showTop, 500)
+    </script>
+</body>
+
+</html>
