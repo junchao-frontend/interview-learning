@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数组去重</title>
+</head>
+<body>
+    <script>
+        let arr = [1,45,32,3,2,1,1]
+
+        // set去重
+        function unique(arr) {
+            return Array.from(new Set(arr))  // 或者 return [...new Set(arr)]
+        }
+        console.log(unique(arr));
+        
+        // 两次循环
+        function unique2(arr) {
+            for(let i = 0,len = arr.length;i < len;i++) {
+                for(let j = i + 1, len = arr.length; j < len; j++) {
+                    if(arr[i] === arr[j]) {
+                        arr.splice(j,1)
+                        j--;
+                        len--
+                    }
+                }
+            }
+            return arr;
+        }
+        console.log(unique2(arr));
+    </script>
+</body>
+</html>
