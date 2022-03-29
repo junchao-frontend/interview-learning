@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var foo = {
+            name: 'wjc',
+            age: 22
+        }
+        Function.prototype.myCall = function (context) {
+            context = context || window
+            context.fn = this//(因为call的调用方式形如：myFun.call(obj)，因此此时call方法的this指向为myFun，因此context.fn = this即为context.fn = myFun)
+            const args = [...arguments].slice(1)
+            const result = context.fn(...args)
+            delete context.fn
+            return result
+        }
+        // apply和call类似都是直接调用 但是apply的参数必须用数组包起来
+        Function.prototype.myApply = function (context) {
+            context = context || window
+            context.fn = this
+            let result;
+            if (arguments[1]) {
+                result = context.fn(...arguments[1])
+            } else {
+                result = context.fn()
+            }
+            delete context.fn
+            return result
+
+        }
+        Function.prototype.myBind = function(context) {
+            const self = this
+            const args = [...arguments].slice(1)
+            return function() {
+                self.call(context,...args)
+            }
+        }
+        function test1(a, b) {
+            console.log('姓名:' + this.name + '年龄:' + this.age + '第一个参数:' + a + '第二个参数:' + b);
+        }
+        test1.myCall(foo, 1, 2)
+        test1.myApply(foo, [1, 2])
+        test1.myBind(foo, 1, 2)()
+    </script>
+</body>
+
+</html>

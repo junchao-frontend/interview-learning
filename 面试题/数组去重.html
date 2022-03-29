@@ -30,6 +30,37 @@
             return arr;
         }
         console.log(unique2(arr));
+        // indexOf去重
+        function unique3(arr) {
+            let res = []
+            for(let i = 0; i < arr.length; i++) {
+                if(res.indexOf(arr[i]) === -1) {
+                    res.push(arr[i])
+                }
+            }
+            return res;
+        }
+        console.log(unique3(arr));
+
+        // includes去重
+        function unique4(arr) {
+            let res = []
+            for(let i = 0; i < arr.length; i++) {
+                if(!res.includes(arr[i])) {
+                    res.push(arr[i])
+                }
+            }
+            return res;
+        }
+        console.log(unique4(arr));
+
+        // filter去重
+        function unique5(arr) {
+            return arr.filter((item,index) => {
+                return arr.indexOf(item,0) === index
+            })
+        }
+        console.log(unique5(arr));
     </script>
 </body>
 </html>

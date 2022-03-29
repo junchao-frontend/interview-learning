@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // resolve和reject里面是执行语句的话 会打印结果 如果执行.then就不会执行.catch 但是如果没有.catch reject也会进入.then
+        function main (){
+            let res = new Promise((resolve,reject) => {
+                console.log(1);
+                reject(console.log(2))
+                resolve(console.log(3))
+            })
+            console.log(4);
+            return res
+        }
+        main().then(res => {
+            console.log(res);
+        }).catch(res => {
+            console.log(res);
+        })
+
+
+        function test(num) {
+            return new Promise((resolve,reject) => {
+                resolve(num)
+            })
+        }
+        test('10').then(res => {
+            console.log(res);
+        })
+    </script>
+</body>
+</html>
