@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2"></script> -->
+</head>
+
+<body>
+    <script>
+        function define(data, key, val) {
+            val = data[key]
+            Object.defineProperty(data, key, { // 数据劫持 -> 给对象进行扩展 -> 属性进行设置
+                set: function (newval) {
+                    console.log(newval)
+                },
+                get: function () {
+                    console.log('访问');
+                    return val;
+                }
+            })
+        }
+        let obj = {
+            name: 'wjc',
+            age: 20
+        }
+        for (let i in obj) {
+            define(obj,i)
+        }
+        // console.log(obj);
+
+        // -----------------------------------------------------------------------------------------------------------------------
+
+        var target = {
+            a: 1,
+            b: 2
+        }
+        let proxy = new Proxy(target,{
+            get(target,prop) {
+                return target[prop]
+            },
+            set(target,prop,value) {
+                target[prop] = value
+            }
+        })
+        proxy.a = 5
+        console.log(proxy);
+        console.log(target);
+
+        // let fn = function() {
+        //     console.log(1);
+        // }
+        // fn.a = 1
+        // console.log(fn);
+    </script>
+</body>
+
+</html>

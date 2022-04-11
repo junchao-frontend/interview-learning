@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var obj = { a: 1, b: 2}
+        // 1. 获取原型 [[getPrototypeOf]]
+        // let proto = Object.getPrototypeOf(obj)
+        // console.log(proto);
+        // console.log(obj.__proto__);
+        // console.log(Object.prototype);
+        // 2. 设置原型 [[setPrototypeOf]]
+        // Object.setPrototypeOf(obj,{c: 3, d:4})
+        // console.log(obj);
+        // 3. 获取对象的可扩展性[[IsExtensible]]
+        // var extensible = Object.isExtensible(obj)
+        // console.log(extensible); // true
+        // Object.freeze(obj)
+        // var extensible2 = Object.isExtensible(obj)
+        // console.log(extensible2); // false
+        // 4.Object.seal(obj) 封闭对象  不可修改删除
+        // obj.c = 3
+        // delete obj.a
+        // obj.b = 3 // 可写
+        // 5. 获取自由属性 [[getOwnProperty]]
+        // Object.setPrototypeOf(obj,{c:3,d:4})
+        // console.log(Object.getOwnPropertyNames(obj)); // a,b  c和d是原型 不是自由属性
+        // 6. 禁止扩展对象 [[preventExtensions]]
+        // Object.preventExtensions(obj)
+        // obj.c = 3
+        // console.log(obj);  // 没有c  但是可以删除
+        // 7. 拦截对象操作[[defineOwnProperty]]
+        // 8. 判断是否是自身属性 [[hasOwnProperty]]
+        // 9. [[GET]]
+        // console.log('a' in obj);
+        // 10. [[SET]]
+        // obj.a = 3
+        // 11. [[Delete]]
+        // 12. [[Enumerate]]  // 枚举
+        // 延伸 for in 语句
+        // 13. 获取键集合 [[OwnPropertyKeys]]
+        // Object.keys(obj)
+        
+    </script>
+</body>
+</html>

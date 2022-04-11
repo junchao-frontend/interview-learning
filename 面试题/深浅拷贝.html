@@ -1,42 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <script>
-        // 如果递归是深拷贝，如果不是递归不能深拷贝引用类型的数据
-        function clone1(source) {
-            if(typeof source !== 'object' || source == null) {
-                return source
-            }
-            var newObj;
-            if(source instanceof Array) {
-                newObj = []
-            } else {
-                newObj = {}
-            }
-            for(let i in source) {
-                newObj[i] = clone1(source[i])
-            }
-            return newObj;
-        }
 
+        // 如果递归是深拷贝，如果不是递归不能深拷贝引用类型的数据
+        function deepClone(obj) {
+            let objClone = Array.isArray(obj) ? [] : {};
+            if (obj && typeof obj === "object") {
+                for (key in obj) {
+                    if (obj.hasOwnProperty(key)) {
+                        //判断ojb子元素是否为对象，如果是，递归复制
+                        if (obj[key] && typeof obj[key] === "object") {
+                            objClone[key] = deepClone(obj[key]);
+                        } else {
+                            //如果不是，简单复制
+                            objClone[key] = obj[key];
+                        }
+                    }
+                }
+            }
+            return objClone;
+        }
+        let arr= [1,2,{name: 'wjc'}]
         var obj = {
             name: '123',
             age: {
-                a:123
+                a: 123
             }
         }
-
-        let res = clone1(obj)
-        res.name = '555'
-        obj.age.a = 'wjc'
-        console.log(obj);
+        let res = deepClone(arr)
         console.log(res);
+        // res.name = '555'
+        // obj.age.a = 'wjc'
+        // console.log(obj);
+        // console.log(res);
+        // let foo = {}
+        // Object.assign(foo,obj) //修改赋值后的对象b的非对象属性，不会影响原对象a的非对象属性；修改赋值后的对象b的对象属性，却会影响原对象a的对象属性
+        // obj.age.a = 555
+        // console.log(foo);
+        // let foo = JSON.parse(JSON.stringify(obj)) // 深拷贝
+        // obj.age.a = 555
+        // console.log(foo);
+        // let arr= [1,2,{name: 'wjc'}]
+        // let test = arr.slice()
+        // arr[2].name = '11'
+        // console.log(test);
     </script>
 </body>
+
 </html>
