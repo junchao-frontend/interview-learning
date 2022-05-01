@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<script>
+  // function Fn () {
+  //   this.age = 'wm'
+  // }
+  // Fn.prototype.sex = '女'
+  // var obj = new Fn()
+  // //  实例化对象会继承构造函数里的属性和方法
+  // console.log(obj.hasOwnProperty('age')) // true
+  // console.log(Fn.prototype.hasOwnProperty('sex')) //true
+  // console.log(obj.hasOwnProperty('sex')) // false
+  // console.log(typeof Fn)
+
+  // undefined >= undefined 为什么是 false ？
+  // 隐式转换，变成NaN >= NaN，NaN不等于自身也不大于自身
+
+  // null >= null 为什么是 true？
+  // 隐式转换，变成0 >= 0，为true
+
+  // [] == ![] 为什么是 true ？
+  // 第一步：转为[] == false
+  // 第二步：转为[] == 0
+  // 第三步：转为'' == 0
+  // 第四步：转为0 == 0
+
+
+  // 0.1 + 0.2 === 0.3，对吗？
+  // 不对，JavaScript存在精度丢失问题，由于有些小数无法用二进制表示，所以只能取近似值，解决方法有：
+
+  // 先转大数，再变小数
+  // 使用toFixed
+
+  // console.log((0.1 + 0.2).toFixed(1) === 0.3.toFixed(1));
+</script>
+
+<body>
+  <div id="root">
+    root
+    <div id="test">
+      test
+    </div>
+  </div>
+  <script>
+    let root = document.getElementById('root')
+    let test = document.getElementById('test')
+    root.addEventListener('click', (e) => {
+      console.log('root')
+    }, false)
+    test.addEventListener('click', (e) => {
+      e.stopPropagation()  // 阻止事件冒泡  e.preventDefault(); 阻止事件默认行为
+      console.log('test')
+    }, false)
+
+    // addEventListener的第三个参数是干嘛的？
+    // 决定事件是捕获阶段执行还是冒泡阶段执行
+
+    // true：捕获
+    // false：默认，冒泡
+  </script>
+</body>
+
+</html>

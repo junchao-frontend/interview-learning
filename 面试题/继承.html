@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 借助call来进行继承  通过call方法改变this指向的方式可以继承父构造函数的属性值和方法， 但是继承不到父类原型上面的方法
+    function Parent (name, age) {
+      console.log(1)
+      this.name = name
+      this.age = age
+      this.arr = [1, 2, 3]
+      this.howold = function () {
+        console.log(`我${this.age}岁了！`)
+      }
+    }
+    Parent.prototype.run = function () {//原型对象上的方法
+      console.log('I can run fast')
+    }
+    // function Child (name, age, color) {
+    //   Parent.call(this, name, age)
+    //   this.color = color
+    // }
+    // let child = new Child('小明', 18, '白色')
+    // console.log(child, 'child')
+    // console.log(child.name)
+    // console.log(child.arr)
+    // child.howold()//我18岁了！
+    // child.run()//报错  无此方法
+
+    // ----------------------------
+    // 这样便实现对父构造函数原型对象上方法与属性的继承（这就是组合继承）
+
+    function Child2 (name, age, color) {
+      Parent.call(this, name, age)
+      // this.color = color
+    }
+    Child2.prototype = new Parent()
+    let child2 = new Child2('wjc', 20)
+    console.log(child2)
+    // child2.howold()//我18岁了！
+    // child2.run()//I can run fast
+  </script>
+</body>
+
+</html>

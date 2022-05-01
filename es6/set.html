@@ -10,14 +10,23 @@
 
 <body>
     <script>
-        // const s = new Set();
+        const s = new Set();
 
-        // [2, 3, 5, 4, 5, 2, 2].forEach(x => s.add(x));
-        // // console.log(s);
+        [2, 3, 5, 4, 5, 2, 2].forEach(x => s.add(x))
+        console.log(s.has(2))
         // const set = new Set([2, 3, 5, 4, 5, 2, 2])
         // console.log([...set]);
+        // 创建对象
 
-        
+        // 创建新的 Map
+        const fruits = new Map()
+
+        // Add new Elements to the Map
+        fruits.set('apples', 500)
+        fruits.set('bananas', 300)
+        console.log(fruits.has('apples'))
+        console.log(fruits.get('apples'));
+
     </script>
 </body>
 
