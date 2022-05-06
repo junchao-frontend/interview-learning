@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    var a = 100
+
+    if (1) {
+      a = 10
+      //在当前块作用域中存在a使用let/const声明的情况下，给a赋值10时，只会在当前作用域找变量a，
+      // 而这时，还未到声明时候，所以控制台Error:Cannot access 'a' before initialization
+      let a = 1
+    }
+
+    // let & const与 var 的区别？
+    // var存在变量提升，可重复声明同一变量，声明的变量均可改
+    // let没有变量提升，不可重复声明同一变量，声明的变量均可改
+    // const没有变量提升，不可重复声明同一变量，声明的基本数据类型不可改，引用类型可改属性，不可只声明变量而不赋值
+  </script>
+</body>
+
+</html>

@@ -1,28 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <script>
-        function main() {
+        //   先执行try中的语句，如果有错误，就会将错误抛出，并且被catch捕获并去执行
+        // ，这时候就会执行catch里的语句，而且不论try中有没有抛出和错误，finally语句都会去执行其中自己的代码块
+        // 只要代码中包含 finally 子句，那么无论try 还是catch 语句块中的return 语句都将被忽略。
+        // 如果提供 finally 子句，则 catch 子句就成了可选的（catch 或 finally 有一个即可）。
+        function main () {
             try {
-                // console.log(111);
-                console.log(a);
-                // throw 'error' + a
-                // console.log(1);
-            } catch(e) {
-                console.log('asd65sa48d6as4d65');
-                console.log(e);
-            }finally {
-                // console.log(1111111111111);
+                // console.log(a)
+                throw 'error' + a
+                // console.log(1)
+            } catch (e) {
+                // console.error('asd65sa48d6as4d65')
+                console.log(e)
+                console.error(e)
+            }
+            finally {
+                console.log(1111111111111)
             }
             // var a = 'a'
         }
         main()
     </script>
 </body>
+
 </html>

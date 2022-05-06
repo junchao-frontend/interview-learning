@@ -1,42 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <script>
+        const data = {
+            more: {
+                like: {
+                    me: '一键三连'
+                }
+            }
+        }
+        const test = ['more', 'like', 'me']
+        let aaa = test.reduce((total, current) => {
+            console.log(total[current])
+            return total[current]
+        }, data)
+        console.log(aaa)
         // 数组求和
-        let arr = [1,2,3,4,5,6]
-        let res = arr.reduce((pre,cur,index) => {
-            // console.log('pre:',pre,'cur:',cur,'index:',index);
-            return pre+cur
+        let arr = [1, 2, 3, 4, 5, 6]
+        let res = arr.reduce((total, currentValue, currentIndex, arr) => {
+            // console.log('total:', total, 'currentValue:', currentValue, 'currentIndex:', currentIndex, 'arr', arr)
+            return total + currentValue
         })
         // console.log(res);
         // 计算每个元素出现的次数 用对象表示
-        let arr2 = ['wjc','ys','zj','wjc']
-        let res2 = arr2.reduce((pre,cur) =>{
-            if(cur in pre){
+        let arr2 = ['wjc', 'ys', 'zj', 'wjc']
+        let res2 = arr2.reduce((pre, cur) => {
+            if (cur in pre) {
                 pre[cur]++
-            }else{
+            } else {
                 pre[cur] = 1
             }
             return pre
-        },{})
+        }, {})
         // console.log(res2);
 
         // 数组去重
-        let arr3 = [1,3,2,3,4]
-        let res3 = arr3.reduce((pre,cur) => {
-            if(!pre.includes(cur)){
+        let arr3 = [1, 3, 2, 3, 4]
+        let res3 = arr3.reduce((pre, cur) => {
+            if (!pre.includes(cur)) {
                 return pre.concat(cur)
-            }else{
+            } else {
                 return pre
             }
-        },[])
-        console.log(res3);
+        }, [])
+        // console.log(res3);
     </script>
 </body>
+
 </html>

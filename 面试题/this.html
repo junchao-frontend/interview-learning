@@ -14,7 +14,7 @@
         var a = {
             name: 111,
             say: function () {
-                console.log(this.name);
+                console.log(this.name)
             }
         }
 
@@ -38,30 +38,30 @@
             obj2: {
                 name: 'aa',
                 say: () => {
-                    console.log(this); // window
+                    console.log(this) // window
                 }
             }
         }
 
         var test = {
             aa: 22,
-            foo() {
+            foo () {
                 const foo2 = () => {
-                    console.log(this); // test
+                    console.log(this) // test
                 }
                 foo2()
             },
             cc: () => {
-                console.log(this); // window
+                console.log(this) // window
             },
             dd: function () {
                 setTimeout(() => {
-                    console.log(this); // test
+                    console.log(this) // test
                 }, 1000)
             },
             ff: function () {
                 setTimeout(function () {
-                    console.log(this); // window
+                    console.log(this) // window
                 }, 1000)
             }
         }
@@ -69,7 +69,13 @@
         // test.foo()
         // test.ff()
 
-
+        const obj11 = {
+            name: '林三心',
+            fn: () => {
+                console.log(this.name)
+            }
+        }
+        obj11.fn()
     </script>
 </body>
 
