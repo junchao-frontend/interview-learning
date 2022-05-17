@@ -52,6 +52,42 @@
   // typeof：能判断string、number、undefined、boolean、function、object（null是object）
   // Object.prototype.toString.call()：能判断大部分数据类型
   // instanceOf 用于检测构造函数的 prototype 属性是否出现在某个实例对象的原型链上。  object instanceof constructor
+
+
+
+  // null是对象吗？为什么？
+  // 解释: 虽然 typeof null 会输出 object，但是这只是 JS 存在的一个悠久 Bug。在 JS 的最初版本中使用的是 32 位系统，为了性能考虑使用低位存储变量的类型信息，000 开头代表是对象然而 null 表示为全零，所以将它错误的判断为 object 。
+
+
+  // String可以将所有的数据都转化为字符串，但是.toString()不能对null和undefined进行转换
+  // 使用.toString()对数字进行转换的时候可以通过在括号中添加数字，来将数字转换为相应的进制,但是使用String()不能进行进制转换
+
+
+  // 对象转原始类型是根据什么流程运行的？
+  // 对象转原始类型，会调用内置的[ToPrimitive]函数，对于该函数而言，其逻辑如下：
+
+  // 如果Symbol.toPrimitive()方法，优先调用再返回
+  // 调用valueOf()，如果转换为原始类型，则返回
+  // 调用toString()，如果转换为原始类型，则返回
+  // 如果都没有返回原始类型，会报错
+  // var obj = {
+  //   value: 3,
+  //   valueOf () {
+  //     return 4
+  //   },
+  //   toString () {
+  //     return '5'
+  //   },
+  //   [Symbol.toPrimitive] () {
+  //     return 6
+  //   }
+  // }
+  // console.log(obj + 1) // 输出7
+  // 其实在JavaScript中，引用数据类型是做不了加法的，必须要把加号两边的值都转换成基本数据类型，再来进行加法运算。
+  // 1.判断左边是否为基本数据类型，如果是的话，步骤到此结束，如果不是，执行下面的步骤
+  // 2.调用valueOf方法，如过返回值是基本数据类型，步骤到此结束，如果不是，执行下面步骤
+  // 3.调用toString方法，如果返回的是基本数据类型，步骤到此结束，如果不是，报错
+
 </script>
 
 <body>
@@ -77,6 +113,20 @@
 
     // true：捕获
     // false：默认，冒泡
+
+    var obj = {
+      value: 3,
+      // valueOf () {
+      //   return 4
+      // },
+      toString () {
+        return 5
+      },
+      [Symbol.toPrimitive] () {
+        return 2
+      }
+    }
+    // console.log(obj + []);
   </script>
 </body>
 

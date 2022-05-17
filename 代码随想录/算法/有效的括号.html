@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 输入：s = "()[]{}"
+    // 输出：true
+    /**
+     * @param {string} s
+     * @return {boolean}
+     */
+    var s = '([{}])'
+    var isValid = function (s) {
+      if (s.length % 2 !== 0) return false
+      let stack = []
+      for (let str of s) {
+        switch (str) {
+          case '(':
+          case '{':
+          case '[':
+            stack.unshift(str)
+            break
+          case ')':
+            if (stack.shift(str) !== '(') return false
+            break
+          case ']':
+            if (stack.shift(str) !== '[') return false
+            break
+          case '}':
+            if (stack.shift(str) !== '{') return false
+            break
+        }
+      }
+      return !stack.length
+    }
+    let res = isValid(s)
+    console.log(res);
+  </script>
+</body>
+
+</html>

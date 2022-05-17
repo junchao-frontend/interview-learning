@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function Person () {
+      this.name = 'wjc'
+    }
+    let p1 = new Person(), nums = [1, 2, 3]
+    function myInstanceof (src, target) {
+      if (!src || !target) {
+        console.warn('参数都没传对就来了')
+        return
+      }
+      if (typeof target !== 'function') {
+        throw Error('target 不是一个构造函数！')
+      }
+      let proto = Object.getPrototypeOf(src)
+      const targetProto = target.prototype
+      while (true) {
+        if (!proto) return false
+        if (proto === targetProto) return true
+        proto = Object.getPrototypeOf(proto)
+      }
+    }
+    console.log(myInstanceof(p1, Person));
+  </script>
+</body>
+
+</html>

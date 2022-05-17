@@ -15,6 +15,7 @@
             age: 22
         }
         Function.prototype.myCall = function (context) {
+            console.log(context)
             context = context || window
             context.fn = this//(因为call的调用方式形如：myFun.call(obj)，因此此时call方法的this指向为myFun，因此context.fn = this即为context.fn = myFun)
             const args = [...arguments].slice(1)
@@ -26,7 +27,7 @@
         Function.prototype.myApply = function (context) {
             context = context || window
             context.fn = this
-            let result;
+            let result
             if (arguments[1]) {
                 result = context.fn(...arguments[1])
             } else {
@@ -36,15 +37,15 @@
             return result
 
         }
-        Function.prototype.myBind = function(context) {
+        Function.prototype.myBind = function (context) {
             const self = this
             const args = [...arguments].slice(1)
-            return function() {
-                self.call(context,...args)
+            return function () {
+                self.call(context, ...args)
             }
         }
-        function test1(a, b) {
-            console.log('姓名:' + this.name + '年龄:' + this.age + '第一个参数:' + a + '第二个参数:' + b);
+        function test1 (a, b) {
+            console.log('姓名:' + this.name + '年龄:' + this.age + '第一个参数:' + a + '第二个参数:' + b)
         }
         test1.myCall(foo, 1, 2)
         test1.myApply(foo, [1, 2])

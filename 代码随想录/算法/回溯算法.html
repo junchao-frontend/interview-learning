@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 输入：digits = "23"
+  输出：["ad","ae","af","bd","be","bf","cd","ce","cf"] -->
+  <script>
+    /** 手机号组合问题
+    * @param {string} digits
+    * @return {string[]}
+    */
+    var letterCombinations = function (digits) {
+      const res = []
+      const map = { '2': 'abc', '3': 'def', '4': 'ghi', '5': 'jkl', '6': 'mno', '7': 'pqrs', '8': 'tuv', '9': 'wxyz' }
+      const dfs = (curr, i) => {
+        console.log(curr)
+        if (i > digits.length - 1) {
+          res.push(curr)
+          return
+        }
+        const letters = map[digits[i]]
+        for (let str of letters) {
+          dfs(curr + str, i + 1)
+        }
+      }
+      dfs('', 0)
+      return res
+    }
+    // console.log(letterCombinations('23'));
+
+
+
+    // --------------------------------
+
+    // 输入：nums = [1, 2, 3]
+    // 输出：[[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
+    /** 全排列
+     * @param {number[]} nums
+     * @return {number[][]}
+     */
+    var permute = function (nums) {
+      function arrSubtraction (a, b) {
+        if (Array.isArray(a) && Array.isArray(b)) {
+          return a.filter((i) => !b.includes(i))
+        }
+        throw new new TypeError("arguments must be array")()
+      }
+      let res = []
+      const dfs = (curr, i) => {
+        if (i > nums.length - 1) {
+          res.push(curr)
+          return
+        }
+        let test = arrSubtraction(nums, curr)
+        for (let item of test) {
+          dfs(curr.concat(item), i + 1)
+        }
+      }
+      dfs([], 0)
+      return res
+    }
+    let result = permute([1, 2, 3])
+    // console.log(result);
+    const permute2 = nums => {
+      if (!nums) return []
+      const res = []
+      // path是组合的数组
+      const search = path => {
+        console.log(path)
+        if (path.length === nums.length) {
+          // 长度满足条件，推入res数组
+          res.push(path)
+          return
+        }
+        for (const num of nums) {
+          if (!path.includes(num)) {
+            // 将没出现过的数字，加入path继续找
+            search([...path, num])
+          }
+        }
+      }
+      // 从空数组开始
+      search([])
+      return res
+    }
+    permute2([1, 2, 3])
+  </script>
+</body>
+
+</html>

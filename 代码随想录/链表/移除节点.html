@@ -6,15 +6,53 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="./List.js"></script>
 </head>
 
 <body>
-    <div id="test">+++</div>
     <script>
-        let test = document.getElementById('test')
-        test.addEventListener('click',()=>{
-            window.location.href="http://www.baidu.com/";
-        })
+        const head = new LinkList([4, 1, 8, 4, 5])
+        const head2 = new LinkList([5, 0, 1, 8, 4, 5])
+        // console.log(head.head)
+        var reverseList = function (headA, headB) {
+            let sizeA = 0, sizeB = 0
+            let curA = headA
+            let curB = headB
+            while (headA) {
+                sizeA++
+                headA = headA.next
+            }
+            while (headB) {
+                sizeB++
+                headB = headB.next
+            }
+            if (sizeA > sizeB) {
+                let n = sizeA - sizeB
+                while (n) {
+                    curA = curA.next
+                    n--
+                }
+            }
+            if (sizeB > sizeA) {
+                let m = sizeB - sizeA
+                while (m) {
+                    curB = curB.next
+                    m--
+                }
+            }
+            let res = null
+            while (curA) {
+                if (curA.val == curB.val) {
+                    res = curA
+                    return res
+                }
+                curA = curA.next
+                curB = curB.next
+            }
+            return res
+        }
+        let res = reverseList(head.head, head2.head)
+        console.log(res);
     </script>
 </body>
 
