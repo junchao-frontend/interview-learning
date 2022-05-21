@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div span {
+      color: rgb(255, 0, 0);
+    }
+
+    span[name='sss'] {
+      color: blueviolet;
+    }
+
+    span[abc='sss'] {
+      color: rgb(19, 228, 64);
+    }
+
+    div>p {
+      color: rgb(87, 60, 60);
+    }
+
+    h1:hover~h2 {
+      color: aqua;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <span name="sss">sss</span>
+    <span abc="sss">abc</span>
+    <h1>h1</h1>
+    <h2>h2</h2>
+    <p>
+      456
+      <span>123</span>
+    </p>
+    <h2>456456</h2>
+  </div>
+</body>
+
+</html>

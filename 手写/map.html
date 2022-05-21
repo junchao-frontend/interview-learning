@@ -10,11 +10,9 @@
 
 <body>
   <script>
-    const nums = [1, 2, 3, 4]
-    // let res = nums.map((item, index) => {
-    //   console.log(item, index)
-    // })
+    const nums = [5, 6, 7, 8]
     Array.prototype.myMap = function (fn, thisArg) {
+      console.log(thisArg)
       if (typeof fn !== 'function') {
         throw ("The first argument must be a function")
       }
@@ -24,7 +22,18 @@
       }
       return result
     }
-    let res = nums.myMap((item, index) => {
+    // 利用reduce实现
+    Array.prototype.myMap2 = function (fn, thisArg) {
+      if (typeof fn !== 'function') {
+        throw ("The first argument must be a function")
+      }
+      let arr = this, result = []
+      arr.reduce((pre, cur, index, arr) => {
+        return result.push(fn.call(thisArg, cur, index, arr))
+      }, [])
+      return result
+    }
+    let res = nums.myMap2((item, index) => {
       return item * 2
     })
     console.log(res);

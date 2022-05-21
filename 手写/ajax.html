@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function ajax (options) {
+      let url = options.url
+      let method = options.method.toLowerCase()
+      let data = options.data
+      const xhr = new XMLHttpRequest()
+      if (options.timeout) {
+        xhr.timeout = options.timeout
+      }
+      return new Promise(function (resolve, reject) {
+        xhr.ontimeout = () => reject('请求超市')
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState == 4) {//4代表解析完成
+            if (xhr.status === 200) {
+              resolve(xhr.responseText)
+            } else {
+              reject(new Error(xhr.statusText))
+            }
+          }
+        }
+        xhr.open(method, url, true)
+        let encodeData = '', paramArr = []
+        if (data instanceof Object) {
+          for (let key in data) {
+            // 参数拼接需要通过 encodeURIComponent 进行编码
+            paramArr.push(encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+          }
+          encodeData = paramArr.join('&')
+        }
+        if (method == 'get') {
+          xhr.send()
+        } else {
+          xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded;charset=UTF-8')
+          xhr.send(encodeData)
+        }
+      })
+    }
+    ajax({
+      url: 'http://49.232.18.137:8000/api/login',
+      method: 'post',
+      data: {
+        phone: 'admin',
+        password: '123456'
+      },
+      timeout: 1000
+    }).then(res => {
+      console.log(JSON.parse(res))
+    }).catch(err => {
+
+    })
+  </script>
+</body>
+
+</html>
