@@ -170,7 +170,147 @@
       }
       return res.some(i => i == targetSum)
     }
-    console.log(hasPathSum(root4, 30))
+    // console.log(hasPathSum(root4, 30))
+    let test = {
+      val: 1,
+      left: null,
+      right: {
+        val: 2,
+        left: {
+          val: 2,
+          left: null,
+          right: null
+        },
+        right: null
+      }
+    }
+    var findMode = function (root) {
+      let map = new Map(), res = []
+      const dfs = (node) => {
+        if (node == null) return
+        dfs(node.left)
+        map.set(node.val, map.has(node.val) ? map.get(node.val) + 1 : 1)
+        dfs(node.right)
+      }
+      dfs(root)
+      let temp = map.get(root.val) // 定义一个出现的次数
+      for (let [key, value] of map) {
+        if (value === temp) {
+          res.push(key)
+        }
+        // 如果value的值大于原本的maxCount就清空res的所有值，因为找到了更大的
+        if (value > temp) {
+          res = []
+          temp = value
+          res.push(key)
+        }
+      }
+      return res
+    }
+    // console.log(findMode(test));
+    let root5 = {
+      val: 3,
+      left: {
+        val: 5,
+        left: {
+          val: 6,
+          left: null,
+          right: null
+        },
+        right: {
+          val: 2,
+          left: {
+            val: 7,
+            left: null,
+            right: null
+          },
+          right: {
+            val: 4,
+            left: null,
+            right: null
+          }
+        }
+      },
+      right: {
+        val: 1,
+        left: {
+          val: 0,
+          left: null,
+          right: null
+        },
+        right: {
+          val: 8,
+          left: null,
+          right: null
+        }
+      }
+    }
+    var lowestCommonAncestor = function (root, p, q) {
+      let stackA = [], stackB = []
+      const dfs = (root, stack, node) => {
+        if (root == null) return
+        stack.push(root.val)
+        dfs(root.left, stack, node)
+        dfs(root.right, stack, node)
+        if (root.val == node) return stack
+        return stack
+        // stack.pop()
+      }
+      let res = dfs(root, stackA, p)
+      console.log(res)
+    }
+    // lowestCommonAncestor(root5, 6, 4)
+    var deleteNode = function (root, key) {
+      if (!root) return root
+      let getMin = (node) => {
+        // BST 最左边的就是最小的
+        while (node.left) {
+          node = node.left
+        }
+        return node
+      }
+      if (root.val == key) {
+        // 这两个 if 把情况 1 和 2 都处理了
+        if (root.left == null) return root.right
+        if (root.right == null) return root.left
+        // 处理情况 3
+        let minNode = getMin(root.right)
+        root.val = minNode.val
+        // 找到最小的顶替它之后还要删除这个最小的节点
+        root.right = deleteNode(root.right, minNode.val)
+      } else if (root.val < key) {
+        root.right = deleteNode(root.right, key)
+      } else {
+        root.left = deleteNode(root.left, key)
+      }
+      return root
+    }
+    let root6 = {
+      val: 5,
+      left: {
+        val: 3,
+        left: {
+          val: 2,
+          left: null,
+          right: null
+        },
+        right: {
+          val: 4,
+          left: null,
+          right: null
+        }
+      },
+      right: {
+        val: 6,
+        left: null,
+        right: {
+          val: 7,
+          left: null,
+          right: null
+        }
+      }
+    }
+    console.log(deleteNode(root6, 3)); 
   </script>
 </body>
 

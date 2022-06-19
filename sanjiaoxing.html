@@ -9,18 +9,40 @@
 </head>
 
 <body>
-  <div class="san">
+  <script>
 
-  </div>
-  <style>
-    .san {
-      width: 0;
-      height: 0;
-      border-bottom: 100px solid red;
-      border-left: 60px solid skyblue;
-      border-right: 60px solid green;
+    function TreeNode (val, left, right) {
+      this.val = (val === undefined ? 0 : val)
+      this.left = (left === undefined ? null : left)
+      this.right = (right === undefined ? null : right)
     }
-  </style>
+
+    /**
+     * @param {number[]} nums
+     * @return {TreeNode}
+     */
+    function getMax (nums) {
+      let map = {}
+      let max = Math.max(...nums)
+      for (let i = 0; i < nums.length; i++) {
+        map[nums[i]] = i
+      }
+      let maxIndex = map[max]
+      return { max, maxIndex }
+    }
+    var constructMaximumBinaryTree = function (nums) {
+      let buildTree = (arr) => {
+        if (arr.length == 0) return null
+        let { max, maxIndex } = getMax(arr)
+        let root = new TreeNode(max)
+        root.left = buildTree(arr.slice(0, maxIndex))
+        root.right = buildTree(arr.slice(maxIndex + 1))
+        return root
+      }
+      return buildTree(nums)
+    }
+    console.log(constructMaximumBinaryTree([3, 2, 1, 6, 0, 5]));
+  </script>
 </body>
 
 </html>

@@ -63,9 +63,15 @@
       console.log(this.name)
     }
     // console.log(Object.getPrototypeOf(test))
-    // let p1 = new test()
+    let p1 = new test()
+    console.log(p1.constructor == test.prototype.constructor)
     // console.log(p1.__proto__)
     // console.log(test.prototype);
+
+    let foo = {
+      name: 'wjc'
+    }
+    // console.log(foo.__proto__ == Object.prototype);
   </script>
 </body>
 

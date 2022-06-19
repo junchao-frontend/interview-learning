@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="btnB">发送</button>
+  <script>
+    const worker = new SharedWorker('./index.js')
+    let btnB = document.getElementById("btnB")
+    let num = 0
+    btnB.addEventListener("click", () => {
+      // worker.port.postMessage(`客户端B发送的消息:${num++}`)
+      document.cookie = `客户端B发送的消息:${num++}`
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let arr = [1, 2, 3, 4, 5]
+    delete arr[0] // 把arr的首个元素改为undefined
+    console.log(arr[0])
+    console.log(arr.push(70))
+    console.log(arr.unshift(70)) // 都返回数组的新长度
+    console.log(arr.pop()) // 返回被删除的元素
+    console.log(arr.splice(0, 1, 300))
+    // splice(index, howmany, element1, ....., elementX)
+    // index-- - 要删除的开始下标,
+    //   howmany-- - 要删除的元素个数,
+    //   element-- -（可选）从index开始，要插入的元素
+    // 该方法的返回值-- - 被删除掉的那部分数组
+    let arr2 = [1, 2, 3, 4, 5]
+    alert(arr2.slice(1, 3))
+    console.log(arr)
+
+
+    // 字符串方法
+    // 提取字符串字符
+    let str = 'hello'
+    console.log(str.charAt(0)) // h
+    // ①charAt() 方法返回字符串中指定下标（位置）的字符串
+    // ②charCodeAt() 方法返回字符串中指定索引的字符 unicode 编码
+
+    if (![]) {
+      console.log(1111)
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./List.js"></script>
+</head>
+
+<body>
+  <script>
+    let list = new LinkList([1, 2, 3, 4, 5, 6])
+    function ListNode (x) {
+      this.val = x
+      this.next = null
+    }
+    function oddEvenList (head) {
+      let cur = head, number = 1, arr1 = [], arr2 = []
+      while (cur) {
+        cur.num = number
+        if (cur.num % 2 == 0) {
+          arr2.push(cur.val)
+        } else {
+          arr1.push(cur.val)
+        }
+        cur = cur.next
+        number++
+      }
+      let arr = [...arr1, ...arr2]
+      let node = new ListNode(arr[0])
+      let list = node
+      for (let i = 1; i < arr.length; i++) {
+        list.next = new ListNode(arr[i])
+        list = list.next
+      }
+      return node
+      // write code here
+    }
+    console.log(oddEvenList(list.head));
+  </script>
+</body>
+
+</html>

@@ -66,7 +66,7 @@
       dfs([], 0)
       return res
     }
-    let result = permute([1, 2, 3])
+    // let result = permute([1, 2, 3])
     // console.log(result);
     const permute2 = nums => {
       if (!nums) return []
@@ -90,7 +90,90 @@
       search([])
       return res
     }
-    permute2([1, 2, 3])
+    // permute2([1, 2, 3])
+    const combine = (n, k) => {
+      const res = []
+
+      const helper = (startIndex, path) => { //startIndex表示搜索的起点位置 path是每条分支的一个组合）
+        if (path.length == k) {
+          res.push(path.slice())       //需要拷贝一份 避免受其他分支的影响
+          return
+        }
+        for (let i = startIndex; i <= n - (k - path.length) + 1; i++) {//剪枝
+          path.push(i)                    //加入path
+          helper(i + 1, path)             //下一层递归
+          path.pop()                      //回溯状态
+        }
+      }
+      helper(1, []) //递归入口
+      return res
+    }
+    // console.log(combine(4, 2));
+    let arr = [[1, 2, 6], [1, 3, 5], [1, 5, 3], [2, 3, 4], [2, 4, 3], [3, 2, 4], [4, 2, 3]]
+    let res = Array.from(new Set(arr))
+    // console.log(res);
+    var letterCombinations = function (digits) {
+      if (digits == '') return []
+      const res = []
+      const map = { '2': 'abc', '3': 'def', '4': 'ghi', '5': 'jkl', '6': 'mno', '7': 'pqrs', '8': 'tuv', '9': 'wxyz' }
+      const dfs = (start, str) => {
+        if (str.length == digits.length) {
+          res.push(str)
+          return
+        }
+        let letters = map[digits[start]]
+        console.log(letters)
+        for (let i of letters) {
+          dfs(start + 1, str + i)
+        }
+      }
+      dfs(0, '')
+      return res
+    }
+    // console.log(letterCombinations('23'));
+    var add = function (arr) {
+      return arr.reduce((pre, cur) => pre + cur)
+    }
+    var combinationSum = function (candidates, target) {
+      let res = []
+      const dfs = (start, path) => {
+        if (path.length != 0 && add(path) == target) {
+          res.push(path.slice())
+          return
+        }
+        if (path.length != 0 && add(path) > target) return
+        for (let i = start; i < candidates.length; i++) {
+          path.push(candidates[i])
+          dfs(i, path)
+          path.pop()
+        }
+      }
+      dfs(0, [])
+      return res
+    }
+    // console.log(combinationSum([2, 3, 6, 7], 7));
+    var combinationSum2 = function (candidates, target) {
+      const arr = candidates.sort((a, b) => a - b)
+      const res = []
+      const dfs = (start, temp, sum) => { // start是当前选择的起点索引 temp是当前的集合 sum是当前求和
+        if (sum >= target) {
+          if (sum == target) {
+            res.push(temp.slice()) // temp的拷贝 加入解集
+          }
+          return   // 结束当前递归
+        }
+        for (let i = start; i < arr.length; i++) { // 枚举当前可选的数，从start开始
+          if (i - 1 >= start && arr[i] == arr[i - 1]) continue
+          temp.push(arr[i])          // 选这个数
+          dfs(i + 1, temp, sum + arr[i]) // 基于此继续选择，传i，下一次就不会选到i左边的数
+          temp.pop()   // 撤销选择，回到选择candidates[i]之前的状态，继续尝试选同层右边的数
+        }
+      }
+      debugger
+      dfs(0, [], 0) // 最开始可选的数是从第0项开始的，传入一个空集合，sum也为0
+      return res
+    }
+    console.log(combinationSum2([2, 5, 2, 1, 2], 5));
   </script>
 </body>
 

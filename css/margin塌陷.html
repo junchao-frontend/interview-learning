@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .big {
+      width: 200px;
+      height: 200px;
+      background-color: aqua;
+      /* padding: 1px; */
+      /* margin-bottom: 20px; */
+      /* border: 1px solid transparent; */
+      overflow: hidden;
+    }
+
+    .small {
+      margin-top: 20px;
+      width: 100px;
+      height: 100px;
+      background-color: rgb(235, 18, 18);
+    }
+
+    .brother1 {
+      width: 100px;
+      height: 100px;
+      border: 1px solid red;
+      margin-bottom: 25px;
+
+    }
+
+    .brother2 {
+      margin-top: 25px;
+      width: 100px;
+      height: 100px;
+      border: 1px solid rgb(1, 255, 1);
+      display: inline-block;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- margin塌陷 -->
+  <!-- 可以触发父盒子的BFC来解决 -->
+  <div class="big">
+    <div class="small"></div>
+  </div>
+
+  <!-- margin合并 -->
+  <!-- CSS中，两个或多个盒（可能但不一定是兄弟）的相邻的margin会被结合成一个margin。外边距按这种方式结合叫做合并（collapse），产生的结合的外边距叫做折叠外边距 -->
+  <div class="brother1"></div>
+  <div class="brother2"></div>
+</body>
+
+</html>

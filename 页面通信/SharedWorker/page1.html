@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // setInterval(() => {
+    //   //加入定时器，让函数每一秒就调用一次，实现页面刷新
+    //   console.log("cookie", document.cookie)
+    // }, 1000)
+
+    const worker = new SharedWorker('./index.js')
+    worker.port.onmessage = e => {
+      console.log("pageA收到消息", e.data)
+    }
+  </script>
+</body>
+
+</html>

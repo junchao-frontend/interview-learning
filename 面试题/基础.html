@@ -127,6 +127,16 @@
       }
     }
     // console.log(obj + []);
+    let foo = {
+      value: 3,
+      toString () {
+        return 10
+      },
+      valueOf () {
+        return 3
+      }
+    }
+    console.log(foo + 5);
   </script>
 </body>
 

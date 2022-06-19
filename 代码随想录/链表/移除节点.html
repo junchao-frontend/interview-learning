@@ -11,48 +11,129 @@
 
 <body>
     <script>
-        const head = new LinkList([4, 1, 8, 4, 5])
+        const head = new LinkList([1, 2, 3, 4, 5])
         const head2 = new LinkList([5, 0, 1, 8, 4, 5])
+        const head3 = new LinkList([1, 2, 3, 1])
         // console.log(head.head)
-        var reverseList = function (headA, headB) {
-            let sizeA = 0, sizeB = 0
-            let curA = headA
-            let curB = headB
-            while (headA) {
-                sizeA++
-                headA = headA.next
+        // var reverseList = function (headA, headB) {
+        //     let sizeA = 0, sizeB = 0
+        //     let curA = headA
+        //     let curB = headB
+        //     while (headA) {
+        //         sizeA++
+        //         headA = headA.next
+        //     }
+        //     while (headB) {
+        //         sizeB++
+        //         headB = headB.next
+        //     }
+        //     if (sizeA > sizeB) {
+        //         let n = sizeA - sizeB
+        //         while (n) {
+        //             curA = curA.next
+        //             n--
+        //         }
+        //     }
+        //     if (sizeB > sizeA) {
+        //         let m = sizeB - sizeA
+        //         while (m) {
+        //             curB = curB.next
+        //             m--
+        //         }
+        //     }
+        //     let res = null
+        //     while (curA) {
+        //         if (curA.val == curB.val) {
+        //             res = curA
+        //             return res
+        //         }
+        //         curA = curA.next
+        //         curB = curB.next
+        //     }
+        //     return res
+        // }
+        // let res = reverseList(head.head, head2.head)
+        // console.log(res);
+        // function reverse (head) {
+        //     let pre = null
+        //     let cur = head
+        //     let next
+        //     while (cur) {
+        //         next = cur.next
+        //         cur.next = pre
+
+        //         pre = cur
+        //         cur = next
+        //     }
+        //     return [pre, head]
+        // }
+        function reverseBetween (head, m, n) {
+            // 增加一个origin方便返回最终结果 origin.next
+            // 因为head也有可能被翻转了
+            const origin = { next: head }
+            head = origin
+            let left, right
+            let i = 0
+            for (; i < m - 1; i++) {
+                head = head.next
             }
-            while (headB) {
-                sizeB++
-                headB = headB.next
+            left = head
+            for (; i < n; i++) {
+                head = head.next
             }
-            if (sizeA > sizeB) {
-                let n = sizeA - sizeB
-                while (n) {
-                    curA = curA.next
-                    n--
-                }
-            }
-            if (sizeB > sizeA) {
-                let m = sizeB - sizeA
-                while (m) {
-                    curB = curB.next
-                    m--
-                }
-            }
-            let res = null
-            while (curA) {
-                if (curA.val == curB.val) {
-                    res = curA
-                    return res
-                }
-                curA = curA.next
-                curB = curB.next
-            }
-            return res
+            right = head.next
+            head.next = null
+            const [start, end] = reverse(left.next)
+            left.next = start
+            end.next = right
+            return origin.next
         }
-        let res = reverseList(head.head, head2.head)
-        console.log(res);
+        // reverseBetween(head.head, 2, 4)
+        function reverseKGroup (head, k) {
+            // write code here
+            let pre = null, current = head
+            let node = head
+            for (let i = 0; i < k; i++) {
+                if (node === null) {
+                    return head
+                }
+                node = node.next
+            }
+            for (let i = 0; i < k; i++) {
+                let t = current.next
+                current.next = pre
+                pre = current
+                current = t
+            }
+            console.log(head)
+            head.next = reverseKGroup(current, k)
+            return pre
+        }
+        // reverseKGroup(head.head, 2)
+        function reverse (head) {
+            let cur = head, pre = null
+            while (cur) {
+                let node = cur.next
+                cur.next = pre
+                pre = cur
+                cur = node
+            }
+            return pre
+        }
+        function isPail (head) {
+            let temp = head
+            let reverseList = reverse(temp)
+            let cur = head, node = reverseList
+            while (cur || node) {
+                console.log(cur, node)
+                if (cur.val != node.val) return false
+                cur = cur.next
+                node = node.next
+            }
+            return true
+            // write code here
+        }
+        console.log(isPail(head3.head));
     </script>
 </body>
 

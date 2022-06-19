@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <script>
         var person = {
             name: '小明',
             age: 12,
-            [Symbol('level')] : 'A'
+            [Symbol('level')]: 'A'
         }
         // console.log(person);
         // var test = [1,3,4]
@@ -21,17 +23,18 @@
         // for(let i of person) {
         //     console.log(i); // 报错 并不具备迭代器的接口 Symbol.iterator
         // }
-        console.log(Object.keys(person));
-        console.log(Object.getOwnPropertySymbols(person));
-        console.log(Reflect.ownKeys(person));  // 全能打印出来
+        // console.log(person[Symbol('level')])
+        console.log(Object.keys(person))
+        console.log(Object.getOwnPropertySymbols(person))
+        console.log(Reflect.ownKeys(person))  // 全能打印出来
 
         let s1 = Symbol.for('foo')
         let s2 = Symbol.for('foo')
-        console.log(s1);
-        console.log(s1 === s2); // true
+        console.log(s1)
+        console.log(s1 === s2) // true
 
         let aa = Symbol.keyFor(s1)
-        console.log(aa); // foo
+        console.log(aa) // foo
 
 
         // var game = {
@@ -42,16 +45,17 @@
             pg: Symbol('pg'),
             sg: Symbol('sg')
         }
-        function createRole(type) {
+        function createRole (type) {
             if (type === game.pg) {
-                console.log('控球后卫');
+                console.log('控球后卫')
             }
-            if(type === game.sg) {
-                console.log('得分后卫');
+            if (type === game.sg) {
+                console.log('得分后卫')
             }
         }
 
         createRole(game.pg)
     </script>
 </body>
+
 </html>
