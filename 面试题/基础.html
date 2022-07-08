@@ -104,9 +104,9 @@
       console.log('root')
     }, false)
     test.addEventListener('click', (e) => {
-      e.stopPropagation()  // 阻止事件冒泡  e.preventDefault(); 阻止事件默认行为
+      // e.stopPropagation()  // 阻止事件冒泡  e.preventDefault(); 阻止事件默认行为
       console.log('test')
-    }, false)
+    }, true)
 
     // addEventListener的第三个参数是干嘛的？
     // 决定事件是捕获阶段执行还是冒泡阶段执行
@@ -119,14 +119,14 @@
       // valueOf () {
       //   return 4
       // },
-      toString () {
-        return 5
-      },
-      [Symbol.toPrimitive] () {
-        return 2
-      }
+      // toString () {
+      //   return 5
+      // },
+      // [Symbol.toPrimitive] () {
+      //   return 2
+      // }
     }
-    // console.log(obj + []);
+    console.log([] + obj)
     let foo = {
       value: 3,
       toString () {
@@ -136,7 +136,7 @@
         return 3
       }
     }
-    console.log(foo + 5);
+    // console.log(foo + 5);
   </script>
 </body>
 

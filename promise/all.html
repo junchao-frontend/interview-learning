@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let p1 = Promise.resolve("1")
+    let p2 = Promise.resolve("2")
+    let p3 = Promise.resolve("3")
+    let p4 = Promise.resolve("4")
+    // 手写all
+    function promiseAll (args) {
+      // 返回一个promise对象
+      return new Promise((resolve, reject) => {
+        if (args.length == 0) resolve([])
+        let promiseResult = []
+        let index = 0
+        for (const item of args) {
+          //每个promise元素进行读取,获取他们的resolve或reject后返回的result
+          // 防止item不是一个promise对象，所以需要套一层
+          Promise.resolve(item).then((res) => {
+            promiseResult.push(res)
+            index++
+            if (index == args.length) {
+              resolve(promiseResult)
+            }
+          }).catch(err => {
+            reject(err)
+          })
+        }
+      })
+    }
+
+    //手写 promise的race()方法
+    promiseRace = function (array) {
+      if (!Array.isArray(array)) { return new Error('argument is no Array') }
+
+      return new Promise((resolve, reject) => {
+        array.forEach(item => {
+          Promise.resolve(item).then(data => {
+            // 注意一旦执行resolve就直接返回数据了，不在去执行以后的item了
+            resolve(data)
+          }).catch(err => {
+            reject(err)
+          })
+        })
+      })
+    }
+    promiseRace([p1, p2, p3, p4]).then(res => { console.log(res) }).catch(err => {
+      console.log(err)
+    })
+  </script>
+</body>
+
+</html>

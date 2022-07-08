@@ -6,42 +6,46 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    div {
+      width: 0px;
+      height: 0px;
+      border: 100px solid transparent;
+      border-bottom-color: pink;
+    }
+  </style>
 </head>
 
 <body>
+  <!-- <div></div> -->
+  <button id="btn">点击</button>
   <script>
-
-    function TreeNode (val, left, right) {
-      this.val = (val === undefined ? 0 : val)
-      this.left = (left === undefined ? null : left)
-      this.right = (right === undefined ? null : right)
+    let btn = document.getElementById('btn')
+    function add () {
+      console.log('点击按钮了!')
     }
-
-    /**
-     * @param {number[]} nums
-     * @return {TreeNode}
-     */
-    function getMax (nums) {
-      let map = {}
-      let max = Math.max(...nums)
-      for (let i = 0; i < nums.length; i++) {
-        map[nums[i]] = i
+    function debounce (fn, time) {
+      let timer = null
+      return function () {
+        clearTimeout(timer)
+        timer = setTimeout(() => {
+          fn()
+        }, time)
       }
-      let maxIndex = map[max]
-      return { max, maxIndex }
     }
-    var constructMaximumBinaryTree = function (nums) {
-      let buildTree = (arr) => {
-        if (arr.length == 0) return null
-        let { max, maxIndex } = getMax(arr)
-        let root = new TreeNode(max)
-        root.left = buildTree(arr.slice(0, maxIndex))
-        root.right = buildTree(arr.slice(maxIndex + 1))
-        return root
+    function throttle (fn, time) {
+      let valid = true
+      return function () {
+        if (!valid) return false
+        valid = false
+        setTimeout(() => {
+          fn()
+          valid = true
+        }, time)
       }
-      return buildTree(nums)
     }
-    console.log(constructMaximumBinaryTree([3, 2, 1, 6, 0, 5]));
+    btn.addEventListener('click', throttle(add, 1000))
+
   </script>
 </body>
 

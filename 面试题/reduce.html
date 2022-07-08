@@ -10,6 +10,9 @@
 
 <body>
     <script>
+        window.onload = function () {
+            console.log(1)
+        }
         const data = {
             more: {
                 like: {
@@ -22,13 +25,14 @@
             console.log(total[current])
             return total[current]
         }, data)
-        console.log(aaa)
+        // console.log(aaa)
         // 数组求和
         let arr = [1, 2, 3, 4, 5, 6]
-        let res = arr.reduce((total, currentValue, currentIndex, arr) => {
-            // console.log('total:', total, 'currentValue:', currentValue, 'currentIndex:', currentIndex, 'arr', arr)
-            return total + currentValue
-        })
+        // prev为上次遍历的结果 如果有初始值为初始值  没有为数组第一个
+        let res = arr.reduce((prev, currentValue, currentIndex, arr) => {
+            console.log('prev:', prev, 'currentValue:', currentValue, 'currentIndex:', currentIndex, 'arr', arr)
+            return prev + currentValue
+        }, 0)
         // console.log(res);
         // 计算每个元素出现的次数 用对象表示
         let arr2 = ['wjc', 'ys', 'zj', 'wjc']

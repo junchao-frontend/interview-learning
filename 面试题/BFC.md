@@ -11,8 +11,8 @@
 # 如何创建 BFC
 
 - float 的值不是 none
-- position 不是 static 或者 relative
-- display 的不是 inline-block flex 或者 inline-flex
+- position 为 absolute 或 fixed
+- display 为 inline-block，table-cell，table-caption，flex， inline-flex
 - overflow：hidden （这个最科学）
 
 # BFC 特性

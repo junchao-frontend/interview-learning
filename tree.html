@@ -310,7 +310,105 @@
         }
       }
     }
-    console.log(deleteNode(root6, 3)); 
+    // console.log(deleteNode(root6, 3));
+    let root7 = {
+      val: 1,
+      left: {
+        val: 2,
+        left: null,
+        right: null
+      },
+      right: {
+        val: 3,
+        left: {
+          val: 4,
+          left: null,
+          right: null
+        },
+        right: {
+          val: 5,
+          left: null,
+          right: null
+        }
+      }
+    }
+    function Print (pRoot) {
+      if (!pRoot) return []
+      let queue = [pRoot], res = [], num = 1
+      while (queue.length) {
+        let len = queue.length, temp = []
+        for (let i = 0; i < len; i++) {
+          let node = null
+          if (num % 2 !== 0) {
+            node = queue.shift()
+            temp.push(node.val)
+            node.left && queue.push(node.left)
+            node.right && queue.push(node.right)
+          } else {
+            node = queue.pop()
+            temp.push(node.val)
+            node.right && queue.unshift(node.right)
+            node.left && queue.unshift(node.left)
+          }
+
+
+        }
+        res.push(temp)
+        num++
+      }
+      return res
+    }
+    // console.log(Print(root7)); 
+    var isValidBST = function (root) {
+      let stack = []
+      let preVal = -Infinity
+      debugger
+      while (root || stack.length) {
+        // 走到了二叉树最底最左边的一个节点，栈里面也存储了对应走过的路径
+        while (root) {
+          stack.push(root)
+          root = root.left
+        }
+        // 从栈中弹出
+        root = stack.pop()
+        // 如果中序遍历得到的节点的值小于等于前一个 inorder，说明不是二叉搜索树
+        if (root.val <= preVal) return false
+        preVal = root.val
+        // 把左 根 遍历好了，开始走右子树
+        root = root.right
+      }
+      return true
+    }
+    let root8 = {
+      val: 10,
+      left: {
+        val: 6,
+        left: {
+          val: 3,
+          left: null,
+          right: null
+        },
+        right: {
+          val: 9,
+          left: null,
+          right: null
+        }
+      },
+      right: {
+        val: 16,
+        left: {
+          val: 14,
+          left: null,
+          right: null
+        },
+        right: {
+          val: 19,
+          left: null,
+          right: null
+        }
+      }
+    }
+    isValidBST(root8)
   </script>
 </body>
 

@@ -17,7 +17,7 @@
       ws.send(`客户端B发送的消息:${num++}`)
     })
     // 创建一个websocket连接
-    var ws = new WebSocket('ws://localhost:3000/')
+    var ws = new WebSocket('ws://101.42.233.226:8060/formPlcHisData/getAll')
     // WebSocket连接成功回调
     ws.onopen = function () {
       console.log("websocket连接成功")

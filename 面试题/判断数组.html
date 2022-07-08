@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 1. 通过Object.prototype.toString.call()
+    // 2. 通过原型链 对象的隐式原型等于构造函数的显示原型
+    [].__proto__ === Array.prototype
+    // 3. 通过ES6的Array.isArray()做判断
+    // 4. 通过instanceof判断
+    // 5. 通过Array.prototype.isPrototypeOf做判断，判断Array是否在传入内容的原型链上
+  </script>
+</body>
+
+</html>

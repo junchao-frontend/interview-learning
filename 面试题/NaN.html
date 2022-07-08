@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // NaN(not a number) 不是一个数字，表示是否属于number类型的一种状态：是或否，不是确切的值
+    // JS中 number数据类型除了浮点型和整数型 还有一个特殊值NaN
+    console.log(typeof NaN) // number
+    var a = 'abc'
+    console.log(Number(a)) // NaN 表达式中存在不可转化的变量 返回无效的结果，不是返回确切的值
+    // NaN不等于本身 不是确切的值
+    console.log(NaN !== NaN);
+  </script>
+</body>
+
+</html>

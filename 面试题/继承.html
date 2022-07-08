@@ -10,42 +10,94 @@
 
 <body>
   <script>
-    // 借助call来进行继承  通过call方法改变this指向的方式可以继承父构造函数的属性值和方法， 但是继承不到父类原型上面的方法
-    function Parent (name, age) {
+    // 原型链继承
+    function SuperType () {
+      this.property = true
+    }
+    SuperType.prototype.getSuperValue = function () {
+      return this.property
+    }
+    function SupType () {
+      this.subproperty = false
+    }
+    SupType.prototype = new SuperType()
+    SupType.prototype.constructor = SupType
+    SupType.prototype.getSubValue = function () {
+      return this.subproperty
+    }
+    let res = new SupType()
+    console.log(res)
+    // console.log(SupType.prototype)
+    // console.log(res)
+    // 特点： 1.非常纯粹的继承关系，实例是子类的实例，也是父类的实例
+    //       2.父类新增原型方法/原型属性，子类都能访问到
+    // 缺点： 1.无法实现多继承
+    //       2.来自原型对象的所有属性被所有实例共享
+    //       3.创建子类实例时，无法向父类构造函数传参
+
+
+
+
+
+
+    // 借助构造函数继承  使用父类的构造函数来增强子类实例，等于是复制父类的实例属性给子类（没用到原型）
+    // 只能继承父类实例的属性和方法，不能继承原型上的属性和方法。
+    function SupType2 () {
+      SuperType.call(this)
+      this.subproperty2 = false
+    }
+    let res2 = new SupType2()
+    console.log(res2, 'res2')
+
+    // 原型式继承
+    function getObject (o) {
+      function F () { }
+      F.prototype = o
+      return new F()
+    }
+    let person = {
+      name: 'Nicholas',
+      friends: ['1', '2', '3']
+    }
+    let antherPerson = getObject(person)
+    let antherPerson2 = Object.create(person)
+    antherPerson2.name = '1111'
+    console.log(antherPerson, '原型式')
+    // console.log(antherPerson2, '原型式')
+
+    var twoD = {
+      name: '2D shape',
+      dimensions: 2
+    }
+    // 寄生继承
+    function triangle () {
+      var that = getObject(twoD)
+      that.name = '寄生'
+      that.getName = function () { }
+      return that
+    }
+    var a = triangle()
+    console.log(a, '寄生')
+
+
+
+    // 寄生组合继承   父类构造函数只执行一次
+    function Teacher () {
       console.log(1)
-      this.name = name
-      this.age = age
-      this.arr = [1, 2, 3]
-      this.howold = function () {
-        console.log(`我${this.age}岁了！`)
-      }
+      this.teacherName = 'han'
     }
-    Parent.prototype.run = function () {//原型对象上的方法
-      console.log('I can run fast')
+    Teacher.prototype.getName = function () {
+      return this.teacherName
     }
-    // function Child (name, age, color) {
-    //   Parent.call(this, name, age)
-    //   this.color = color
-    // }
-    // let child = new Child('小明', 18, '白色')
-    // console.log(child, 'child')
-    // console.log(child.name)
-    // console.log(child.arr)
-    // child.howold()//我18岁了！
-    // child.run()//报错  无此方法
-
-    // ----------------------------
-    // 这样便实现对父构造函数原型对象上方法与属性的继承（这就是组合继承）
-
-    function Child2 (name, age, color) {
-      Parent.call(this, name, age)
-      // this.color = color
+    Teacher.prototype.test = '111'
+    function student () {
+      Teacher.call(this)
+      this.studentName = 'wang'
     }
-    Child2.prototype = new Parent()
-    let child2 = new Child2('wjc', 20)
-    console.log(child2)
-    // child2.howold()//我18岁了！
-    // child2.run()//I can run fast
+    student.prototype = Object.create(Teacher.prototype)
+    student.prototype.name = 'wjc'
+    let res3 = new student()
+    console.log(res3);
   </script>
 </body>
 

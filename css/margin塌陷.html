@@ -42,7 +42,11 @@
       width: 100px;
       height: 100px;
       border: 1px solid rgb(1, 255, 1);
-      display: inline-block;
+      /* display: inline-block; */
+    }
+
+    .test {
+      overflow: hidden;
     }
   </style>
 </head>
@@ -57,7 +61,18 @@
   <!-- margin合并 -->
   <!-- CSS中，两个或多个盒（可能但不一定是兄弟）的相邻的margin会被结合成一个margin。外边距按这种方式结合叫做合并（collapse），产生的结合的外边距叫做折叠外边距 -->
   <div class="brother1"></div>
-  <div class="brother2"></div>
+  <div class="test">
+    <div class="brother2"></div>
+
+  </div>
+  1. 后者使用 position 定位；属性 fixed 或 absolute
+  2. 前或后者使用 display 属性如下：
+  - inline-block
+  - inline-flex
+  - inline-grid
+  - inline-table
+  - table-caption
+  3. 将其中一个元素装入一个开启 bfc 的元素中如下
 </body>
 
 </html>

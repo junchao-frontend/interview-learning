@@ -11,19 +11,50 @@
 <body>
   <div style="font-size: 1rem;">111</div>
   <script>
-    function setRem () {
-      var ui_w = 375
-      // 获取屏幕的宽度
-      var clientWidth = document.documentElement.clientWidth || document.body.clientWidth
-      // 通过js动态改变html根节点字体大小
-      var html_ = document.getElementsByTagName('html')[0]
-      html_.style.fontSize = (clientWidth / ui_w) * 10 + 'px'
-    }
-    // window.onresize 浏览器被重置大小执行事件
-    window.onresize = setRem
+    // function setRem () {
+    //   var ui_w = 375
+    //   // 获取屏幕的宽度
+    //   var clientWidth = document.documentElement.clientWidth || document.body.clientWidth
+    //   // 通过js动态改变html根节点字体大小
+    //   var html_ = document.getElementsByTagName('html')[0]
+    //   html_.style.fontSize = (clientWidth / ui_w) * 10 + 'px'
+    // }
+    // // window.onresize 浏览器被重置大小执行事件
+    // window.onresize = setRem
 
-    let a = [1, 2], b = [1, 2]
-    console.log(a == b);
+    // let a = [1, 2], b = [1, 2]
+    // console.log(a == b);
+    function deepClone (obj) {
+      let cloneObj = Array.isArray(obj) ? [] : {}
+      if (obj && typeof obj == 'object') {
+        for (let key in obj) {
+          if (obj[key] && typeof obj[key] == 'object') {
+            cloneObj[key] = deepClone(obj[key])
+          } else {
+            cloneObj[key] = obj[key]
+          }
+        }
+      }
+      return cloneObj
+    }
+    let obj = {
+      name: 'wjc',
+      test: {
+        age: 20
+      }
+    }
+    let res = deepClone(obj)
+    obj.name = '123'
+    obj.test.age = 23
+    // console.log(res);
+  </script>
+  <script>
+    function test (name, age) {
+      this.name = name
+      this.age = age
+    }
+    let aa = new test('wjc', 22)
+    console.log(aa);
   </script>
 </body>
 

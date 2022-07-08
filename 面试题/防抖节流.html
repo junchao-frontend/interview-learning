@@ -15,8 +15,10 @@
 </head>
 
 <body>
-    <div class="test"></div>
+    <div class="test">
+    </div>
     <script>
+        let btn = document.getElementById('button')
         function showTop () {
             var scrollTop = document.body.scrollTop || document.documentElement.scrollTop
             console.log('滚动条位置：' + scrollTop)
@@ -46,7 +48,7 @@
                 }, delay)
             }
         }
-        window.onscroll = debounce(showTop, 500)
+        window.onscroll = throttle(showTop, 1000)
     </script>
 </body>
 

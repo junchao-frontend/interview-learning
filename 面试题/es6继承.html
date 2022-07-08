@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 通过ES6的class创建类
+    class Person {
+      // 构造器
+      constructor(name, age) {
+        this.name = name
+        this.age = age
+      }
+      // Person类的方法
+      eat () {
+        console.log(`我是${this.name}，我要吃饭！`)
+      }
+    }
+    // 创建Teacher类，其继承于Person，extends继承
+    class Teacher extends Person {
+      constructor(name, age, school) {
+        super(name, age)
+        this.school = school
+      }
+      teach () {
+        console.log("我要教你们上课哦")
+      }
+    }
+    let student = new Person('wjc', 22)
+    let teacher = new Teacher('hyb', 30, '河北工程大学')
+    console.log(teacher);
+  </script>
+</body>
+
+</html>
