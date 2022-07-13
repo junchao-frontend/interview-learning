@@ -14,8 +14,8 @@
             var a = 1
             let b = 2
         }
-        console.log(a);
-        // console.log(b); // 报错
+        console.log(a)
+        // console.log(b) // 报错
         // var tmp = 123;
 
         // if (true) {
@@ -25,13 +25,14 @@
         // ES6 明确规定，如果区块中存在let和const命令，这个区块对这些命令声明的变量，从一开始就形成了封闭作用域。凡是在声明之前就使用这些变量，就会报错。
 
 
-        // function f1() {
-        //     let n = 5;
-        //     if (true) {
-        //         let n = 10;
-        //     }
-        //     console.log(n); // 5
-        // }
+        function f1 () {
+            let n = 5
+            if (true) {
+                let n = 10
+            }
+            console.log(n) // 5
+        }
+        f1()
         // 上面的函数有两个代码块，都声明了变量n，运行后输出 5。这表示外层代码块不受内层代码块的影响。如果两次都使用var定义变量n，最后输出的值才是 10。
     </script>
 </body>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="main">
+    <div class="test"></div>
+  </div>
+  <script>
+    // 内存泄漏： 由于疏忽或错误造成程序未能释放已经不再使用的内存
+    // 1. 意外的全局变量
+    // function fun(){
+    //   a = 10
+    //   this.b = 20
+    // }
+    // console.log(a);
+    // console.log(b);
+
+    // 2. 定时器-> 在不用的时候，及时清除定时器/没有及时清除的dom元素
+    // var main = document.querySelector('.main')
+    // var timer = setInterval(() => {
+    //   var test = document.querySelector('.test')
+    //   main.removeChild(test)
+    //   console.log(test)
+    //   test = null
+    //   if (!test) {
+    //     clearInterval(timer)
+    //   }
+    // })
+
+    // 3. 闭包 -- 闭包可以维持函数内部的局部变量 使其得不到释放
+    // function fn (name) {
+    //   function fun1 () {
+    //     console.log(name)
+    //   }
+    //   return fun1
+    // }
+    // var aa = fn('张三')
+    // aa()
+    // aa()
+    // aa = null
+
+    //4. 事件监听 ---  再不用的时候取消事件监听
+  </script>
+</body>
+
+</html>

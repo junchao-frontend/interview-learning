@@ -34,11 +34,13 @@
                 a: 123
             }
         }
-        let res = deepClone(obj)
-        obj.name = 'wjc'
+        let res = deepClone(obj), res2 = Object.assign({}, obj)
+        res2.name = 'res2'
+        res.name = 'wjc'
         obj.age.a = 555
         console.log(obj)
         console.log(res)
+        console.log(res2)
         // res.name = '555'
         // obj.age.a = 'wjc'
         // console.log(obj);
@@ -54,13 +56,6 @@
         // let test = arr.slice()
         // arr[2].name = '11'
         // console.log(test);
-
-        let aaa = {
-            name: 'wjc'
-        }
-        let bbb = aaa
-        bbb.name = 'ys'
-        // console.log(aaa, bbb);
     </script>
 </body>
 

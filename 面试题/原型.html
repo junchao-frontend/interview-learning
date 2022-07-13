@@ -47,31 +47,34 @@
     }
 
     var f = new F()
-    console.log([])
-    // f.a()  // 
+    f.a()  // wjc
     // f.b() // f.b is not a function
-    F.a() // a
+    F.a() // aa
     F.b() // b
     console.log(F.__proto__ === Function.prototype);
 
   </script>
   <script>
-    function test () {
+    // 对原型的重写
+    function Test () {
       this.name = 'wjc'
+      this.age = 22
     }
-    test.prototype.dance = function () {
+    Test.prototype.getName = function () {
       console.log(this.name)
     }
-    // console.log(Object.getPrototypeOf(test))
-    let p1 = new test()
-    console.log(p1.constructor == test.prototype.constructor)
-    // console.log(p1.__proto__)
-    // console.log(test.prototype);
-
-    let foo = {
-      name: 'wjc'
+    Test.prototype = {
+      constructor: Test,
+      getName: function () {
+        console.log(this.age)
+      }
     }
-    // console.log(foo.__proto__ == Object.prototype);
+    // console.log(Object.getPrototypeOf(Test))
+    let p1 = new Test()
+    p1.getName()
+    console.log(p1)
+    console.log(p1.__proto__ === Test.prototype)
+
   </script>
 </body>
 

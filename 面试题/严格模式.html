@@ -10,13 +10,11 @@
 
 <body>
   <script>
-    var name = '123'
-    function test () {
-      name = 'wjc' // 会向上找到全局作用域
-      // console.log(name)
-    }
-    test()
-    console.log(name) // wjc
+    // "use strict"
+    // 1. 使调试更加容易
+    // 2. 变量在赋值之前必须要声明，防止意外的全局变量
+    // 3. 取消this的强制转换
+    // 4. 不允许函数参数重名
   </script>
 </body>
 

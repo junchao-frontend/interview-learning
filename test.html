@@ -49,12 +49,15 @@
     // console.log(res);
   </script>
   <script>
-    function test (name, age) {
-      this.name = name
-      this.age = age
+    let foo = {
+      name: 'wjc'
     }
-    let aa = new test('wjc', 22)
-    console.log(aa);
+    // console.log(JSON.stringify(foo));
+    function person (name) {
+      this.name = name
+    }
+    let aaa = new person('wjc')
+    console.log(aaa instanceof person);
   </script>
 </body>
 

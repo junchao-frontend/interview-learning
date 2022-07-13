@@ -16,7 +16,15 @@
     var a = 'abc'
     console.log(Number(a)) // NaN 表达式中存在不可转化的变量 返回无效的结果，不是返回确切的值
     // NaN不等于本身 不是确切的值
-    console.log(NaN !== NaN);
+    console.log(NaN !== NaN)
+
+
+    // isNaN 和 Number.isNaN
+    // 如果isNaN函数的参数不是Number类型， isNaN函数会首先尝试将这个参数转换为数值，然后才会对转换后的结果是否是NaN进行判断
+    console.log(isNaN(undefined)) // true
+    // Number.isNaN是先判断传入的是否是数字 如果不是数字就直接返回false
+    console.log(Number.isNaN(undefined)) // false
+
   </script>
 </body>
 

@@ -15,12 +15,13 @@
       setTimeout(() => {
         resolve('这次一定')
       })
+      // resolve('这次一定11')
+      console.log(111)
     })
     test.then(res => {
       console.log(res)
-      return '111111'
-    }).then(ss => {
-      console.log(ss)
+    }, err => {
+      console.log(err)
     })
     // let aa = new Promise((resolve, reject) => {
     //   resolve('wjc')

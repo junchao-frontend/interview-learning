@@ -8,6 +8,8 @@
   <title>Document</title>
 </head>
 <script>
+  // Object.is() 用来判断两个值是否严格相等，处理一些特殊情况， +0 和 -0不再相等 两个NaN是相等的
+  Object.is(+0, -0)
   // function Fn () {
   //   this.age = 'wm'
   // }
@@ -104,9 +106,9 @@
       console.log('root')
     }, false)
     test.addEventListener('click', (e) => {
-      // e.stopPropagation()  // 阻止事件冒泡  e.preventDefault(); 阻止事件默认行为
+      e.stopPropagation()  // 阻止事件冒泡  e.preventDefault(); 阻止事件默认行为
       console.log('test')
-    }, true)
+    }, false)
 
     // addEventListener的第三个参数是干嘛的？
     // 决定事件是捕获阶段执行还是冒泡阶段执行

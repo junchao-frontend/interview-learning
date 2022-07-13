@@ -10,13 +10,14 @@
 
 <body>
   <script>
-    var name = '123'
-    function test () {
-      name = 'wjc' // 会向上找到全局作用域
-      // console.log(name)
+    let obj = {
+      name: '123',
+      age: 22
     }
-    test()
-    console.log(name) // wjc
+    let arr = [1, 2, 3, { a: 1 }]
+    for (let value of obj) {
+      console.log(value)
+    }
   </script>
 </body>
 

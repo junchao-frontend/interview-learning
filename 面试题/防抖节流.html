@@ -33,6 +33,7 @@
                 timer = setTimeout(fn, delay) // 简化写法
             }
         }
+        // 节流： 减少一段时间的触发频率
         function throttle (fn, delay) {
             let valid = true
             return function () {

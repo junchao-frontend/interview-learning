@@ -10,13 +10,11 @@
 
 <body>
   <script>
-    var name = '123'
-    function test () {
-      name = 'wjc' // 会向上找到全局作用域
-      // console.log(name)
-    }
-    test()
-    console.log(name) // wjc
+    // 或  如果第一个操作数为真，则返回第一个 如果第一个为假则返回第二个
+    console.log(true || 0)
+    // 与 如果第一个操作数为真 则返回第二个  如果第一个为假则返回第一个
+    console.log(0 && 1)
+    console.log(1 && 0);
   </script>
 </body>
 

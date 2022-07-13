@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // ES6中的rest参数 用于获取函数多余的参数，形式（...变量名）, 把一个分离的参数序列整合为一个数组
+    // rest参数只能放在最后一个
+    function fn (...args) {
+      console.log(Object.prototype.toString.call(arguments))
+      console.log(args)
+      for (let i = 0; i < arguments.length; i++) {
+        console.log(arguments[i])
+      }
+    }
+    fn(1, 2, 3)
+
+    function fun1 () {
+      Array.prototype.forEach.call(arguments, (item) => {
+        console.log(item)
+      })
+    }
+  </script>
+</body>
+
+</html>

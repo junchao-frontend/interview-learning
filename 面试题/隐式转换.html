@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /*
+     ToPrimitive方法: 这是js中每个值隐含的自带的方法，用来将值（无论是基本类型还是对象）转换为基本类型值
+     如果值为基本类型，则直接返回值本身；如果值为对象，其看起来大概是这样：
+        ToPrimitive（obj，type）
+        obj --> 需要转换的对象
+        type --> 期望的结果类型
+        type的值可以为number或者string，默认情况下为number
+        1、当type为number时规则如下：
+          (1)调用obj的valueOf方法，如果为原始值，则返回，否则下一步
+          (2)调用obj的toString方法，如果为原始值，则返回，否则下一步
+          (3)抛出TypeError异常
+        2、当type为string时规则如下：
+          (1)调用obj的toString方法，如果为原始值，则返回，否则下一步
+          (2)调用obj的valueOf方法，如果为原始值，则返回，否则下一步
+          (3)抛出TypeError异常
+     */
+
+    // + 操作符的两边有至少一个string类型变量时，两边的变量都会被隐式转换为字符串；其他情况下两边的
+    // 变量都会被转换为数字
+    console.log(1 + '23') // 123
+    console.log(1 + false) // 1
+    console.log('1' + false) // '1false'
+    console.log(true + false) // 1
+
+    // - 、 * 、 / 操作运算符会转化为数字
+    console.log(25 - '23') // 2
+    console.log(1 * false) // 0
+    console.log(1 / 'aa') // NaN
+
+    // 对于 == 操作符来说
+    console.log(3 == true) // 3 --> 3 true --> 1  false
+    console.log('0' == false) // '0' --> 0, false ==> 0 true
+
+    // 对于< 和 >比较符 按照字符的排列顺序比较
+    console.log('c' > 'b') // true
+
+    // 其他情况转为数字比较
+    console.log('12' < 13) // true
+
+    // 对象
+    var a = {}
+    console.log(a > 2) // false  a先进行valueof和tostring 变成[object Object] 再进行Number变成NaN
+  </script>
+</body>
+
+</html>

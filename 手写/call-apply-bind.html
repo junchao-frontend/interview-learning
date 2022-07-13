@@ -20,7 +20,7 @@
       // console.log(this) // 此时的this指向test
       context.fn = this
       let args = [...arguments].slice(1)
-      // console.log(...args)
+      console.log(args)
       const result = context.fn(...args)
       delete context.fn
       return result

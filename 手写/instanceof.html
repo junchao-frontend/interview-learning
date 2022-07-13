@@ -13,7 +13,10 @@
     function Person () {
       this.name = 'wjc'
     }
-    let p1 = new Person(), nums = [1, 2, 3]
+    let p1 = new Person()
+    let aa = Object.getPrototypeOf(p1)
+    console.log(aa === Person.prototype)
+    console.log(p1.__proto__ === Person.prototype)
     function myInstanceof (src, target) {
       if (!src || !target) {
         console.warn('参数都没传对就来了')
