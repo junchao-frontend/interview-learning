@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function Person (name, age) {
+      this.name = name
+      this.age = age
+    }
+    function myNew (fn, ...args) {
+      let obj = {}
+      obj.__proto__ = fn.prototype
+      let res = fn.apply(obj, args)
+      // 5.如果构造函数返回非空对象，则返回该对象；否则，返回刚创建的新对象。
+      if (res instanceof Object) {
+        return res
+      } else {
+        return obj
+      }
+    }
+    let res = myNew(Person, 'wjc', 20)
+    console.log(res);
+  </script>
+</body>
+
+</html>

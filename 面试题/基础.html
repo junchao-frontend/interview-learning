@@ -104,11 +104,11 @@
     let test = document.getElementById('test')
     root.addEventListener('click', (e) => {
       console.log('root')
-    }, false)
+    }, true)
     test.addEventListener('click', (e) => {
-      e.stopPropagation()  // 阻止事件冒泡  e.preventDefault(); 阻止事件默认行为
+      // e.stopPropagation()  // 阻止事件冒泡  e.preventDefault(); 阻止事件默认行为
       console.log('test')
-    }, false)
+    }, true)
 
     // addEventListener的第三个参数是干嘛的？
     // 决定事件是捕获阶段执行还是冒泡阶段执行

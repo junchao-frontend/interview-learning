@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // let a = "()[]{}"
+    // for (let i = 0; i < a.length; i++) {
+    //   console.log(a[i])
+    // }
+    // switch (key) {
+    //   case value:
+
+    //     break
+
+    //   default:
+    //     break
+    // }
+    let foo = {
+      name: '123',
+      test: {
+        age: 20
+      }
+    }
+    let arr1 = [1, 2, [3]]
+    let arr2 = arr1.slice()
+    arr1[0] = 11
+    arr1[2][0] = 33
+    console.log(arr1)
+    console.log(arr2)
+    function deepClone (obj) {
+      let objClone = Array.isArray(obj) ? [] : {}
+      if (obj && typeof obj === "object") {
+        for (key in obj) {
+          //判断ojb子元素是否为对象，如果是，递归复制
+          if (obj[key] && typeof obj[key] === "object") {
+            objClone[key] = deepClone(obj[key])
+          } else {
+            //如果不是，简单复制
+            objClone[key] = obj[key]
+          }
+        }
+      }
+      return objClone
+    }
+    let aa = deepClone(foo)
+    foo.name = 11
+    foo.test.age = '999'
+    console.log(foo)
+    console.log(aa);
+  </script>
+</body>
+
+</html>

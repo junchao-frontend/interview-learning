@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+
+    const fn1 = x => x
+
+    const fn2 = x => { x }
+    // 但是如果想返回一个对象直接用{}包括会默认为函数体，但又不想写 return，则可以使用({})包裹
+    const fn3 = x => ({ x })
+
+    console.log(fn1(1))
+
+    console.log(fn2(1))
+
+    console.log(fn3(1));
+  </script>
+</body>
+
+</html>

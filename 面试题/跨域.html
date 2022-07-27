@@ -11,14 +11,18 @@
 <body>
     <!-- 写一个callback函数 来得到数据 -->
     <script>
-        function callback (data) {
+        function getJSONP (url, callback) {
+            let script = document.createElement('script')
+            script.src = url + '?callback=' + callback
+            document.querySelector('head').appendChild(script)
+        }
+        function getData (data) {
             console.log(data)
         }
+        getJSONP('https://www.fastmock.site/mock/ec704b01bfa3554a23f4d4806e154437/user/showData', 'getData')
     </script>
     <!-- 通过src 可以访问到外源网址 -->
     <!-- 需要在网址后面加上 &callback=函数名 ;用一个函数来得到外源数据-->
-    <script
-        src="https://www.fastmock.site/mock/ec704b01bfa3554a23f4d4806e154437/user/showData?callback=callback"></script>
 </body>
 
 </html>

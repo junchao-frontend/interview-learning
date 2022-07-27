@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // async 
+    // async函数可能包含0个或者多个await表达式。await表达式会暂停整个async函数的执行进程并出让其控制权，
+    // 只有当其等待的基于promise的异步操作被兑现或被拒绝之后才会恢复进程。promise的解决值会被当作该await表达式的返回值
+
+    // 在async中第一个await之前的代码会被同步执行，遇到await之后开始异步操作，
+    // 就会退出当前async函数的执行进而执行函数下面的操作，直到那个await异步操作完成，
+    // 会继续async函数里下面的同步操作，若再遇到await又会开启一个异步操作，并且退出当前async函数继续其下面的步骤，一直等到这个await操作完成。
+
+
+
+
+    // await
+    // await 表达式会暂停当前 async function 的执行（），等待 Promise 处理完成。
+    // 若 Promise 正常处理(fulfilled)，其回调的resolve函数参数作为 await 表达式的值，继续执行 async function。
+
+    // 在async中第一个await之前的代码会被同步执行，遇到await之后开始异步操作，
+    // 就会退出当前async函数的执行进而执行函数下面的操作，直到那个await异步操作完成，会继续async函数里下面的同步操作，若再遇到await又会开启一个异步操作，
+    // 并且退出当前async函数继续其下面的步骤，一直等到这个await操作完成。
+    // 若 Promise 处理异常(rejected)，await 表达式会把 Promise 的异常原因抛出。
+
+    async function test () {
+      console.log(22222)
+      return 11
+    }
+    async function test2 () {
+      const res = await test()
+      console.log(res)
+    }
+    test2()
+    console.log('wjc');
+  </script>
+</body>
+
+</html>

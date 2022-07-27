@@ -1,29 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <script>
         var obj = {
-            A: function(salary){
-                return salary*4
+            A: function (salary) {
+                return salary * 4
             },
-            B: function(salary){
-                return salary*3
+            B: function (salary) {
+                return salary * 3
             },
-            C: function(salary){
-                return salary*2
+            C: function (salary) {
+                return salary * 2
             }
         }
-        var calculateBonus = function(salary,level) {
+        var calculateBonus = function (level, salary) {
             return obj[level](salary)
         }
-        let res = calculateBonus('3000','B')
+        let res = calculateBonus('B', '3000')
         console.log(res);
     </script>
 </body>
+
 </html>
